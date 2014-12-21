@@ -9,16 +9,9 @@ featuresFile <- read.table("./UCI HAR Dataset/features.txt")
 featureNames <- as.vector(featuresFile[,2])
 activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt", col.names=c("activityID","activityName"))
 
-# 
-#testSubjects <- read.table("./UCI HAR Dataset/test/subject_test.txt", col.names="subjectID")
-#testActivities <- read.table("./UCI HAR Dataset/test/Y_test.txt", col.names="activityID")
-#fullTestMeasures <- read.table("./UCI HAR Dataset/test/X_test.txt", col.names=featureNames)
-#testMeasures <- subset(fullTestMeasures, select = which(grepl("mean()|std()", featureNames, perl=T)))
-
-#trainSubjects <- read.table("./UCI HAR Dataset/train/subject_train.txt", col.names="subjectID")
-#trainActivities <- read.table("./UCI HAR Dataset/train/Y_train.txt", col.names="activityID")
-#fullTrainMeasures <- read.table("./UCI HAR Dataset/train/X_train.txt", col.names=featureNames)
-#trainMeasures <- subset(fullTrainMeasures, select = which(grepl("mean()|std()", featureNames, perl=T)))
+# Combined these commands to avoid taking memory on temporary/duplicate storage of these data frames.
+#  Went ahead and subsetted to the desired mean and std columns while reading to avoid taking up memory long term.
+# For troubleshooting or other purposes, this could be deconstructed.
 combinedData <- rbind(cbind(read.table("./UCI HAR Dataset/test/subject_test.txt", col.names="subjectID"),
                             read.table("./UCI HAR Dataset/test/Y_test.txt", col.names="activityID"),
                             subset(read.table("./UCI HAR Dataset/test/X_test.txt", col.names=featureNames),
