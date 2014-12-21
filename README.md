@@ -11,3 +11,5 @@ From here, the script resolves the activity ID column to include the activity na
 Once the descriptive activity name is available, we use dplyr functionality to string together the group_by and summarise_each functions to provide us a mean/average for each of the non-grouped variables.
 
 Finally, we use write.table to provide a file for further research...and submission for the course project.
+
+To read the file, use the read.table function. The file contains headers so be sure to set header=TRUE to get proper variable naming.
